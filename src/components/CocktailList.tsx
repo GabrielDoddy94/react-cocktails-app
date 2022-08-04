@@ -18,8 +18,13 @@ export function CocktailList() {
   }
 
   return (
-    <div>
-      <h2>cocktail list component</h2>
-    </div>
+    <section className="section">
+      <h2 className="section-title">cocktails</h2>
+      <div className="cocktails-center">
+        {cocktails.map(item => {
+          return <Cocktail key={item.id} {...item} />;
+        })}
+      </div>
+    </section>
   );
 }
