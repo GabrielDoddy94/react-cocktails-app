@@ -8,7 +8,7 @@
 
 ## 🌎 Deploy
 
-Access the application 👉 [Cocktails App](https://react-cocktails-j4b7o3vfm-gabrieldoddy94.vercel.app/) 👈
+Access the application 👉 [Cocktails App](https://react-cocktails-app.vercel.app/) 👈
 
 ## 💻 Project
 
