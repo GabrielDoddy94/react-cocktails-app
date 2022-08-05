@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { CocktailData } from "../@types/cocktail";
+import { CocktailsFormatted } from "../@types/cocktail";
 
-export function Cocktail({ id, name, image, info, glass }: CocktailData) {
+export function Cocktail({ id, name, image, info, glass }: CocktailsFormatted) {
   return (
     <article className="cocktail">
       <div className="img-container">
