@@ -7,7 +7,7 @@ import {
   ReactNode,
 } from "react";
 
-import { CocktailData, CocktailFetchData } from "./@types/cocktail";
+import { CocktailsFormatted, Drinks } from "./@types/cocktail";
 
 type AppProviderProps = {
   children: ReactNode;
@@ -15,7 +15,7 @@ type AppProviderProps = {
 
 type AppContextData = {
   loading: boolean;
-  cocktails: CocktailData[];
+  cocktails: CocktailsFormatted[];
   setSearchTerm: Function;
 };
 
@@ -25,15 +25,15 @@ const AppContext = createContext({} as AppContextData);
 export function AppProvider({ children }: AppProviderProps) {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("a");
-  const [cocktails, setCocktails] = useState<CocktailData[]>([]);
+  const [cocktails, setCocktails] = useState<CocktailsFormatted[]>([]);
 
-  async function fetchDrinks() {
+  const fetchDrinks = useCallback(async () => {
     setLoading(true);
 
     try {
       const response = await fetch(`${url}${searchTerm}`);
-      const data = await response.json();
-      const { drinks }: { drinks: CocktailFetchData[] } = data;
+      const data: Drinks = await response.json();
+      const { drinks } = data;
 
       if (drinks) {
         const newCocktails = drinks.map(item => {
@@ -59,7 +59,7 @@ export function AppProvider({ children }: AppProviderProps) {
       console.log(error);
       setLoading(false);
     }
-  }
+  }, [searchTerm]);
 
   useEffect(() => {
     fetchDrinks();
